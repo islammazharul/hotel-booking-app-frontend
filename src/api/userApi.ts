@@ -1,6 +1,5 @@
 import { LoginFormData } from "@/pages/Login";
 import { RegisterFormData } from "@/pages/Register";
-// import Cookies from "js-cookie";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -57,7 +56,6 @@ export const LogOut = async () => {
     credentials: "include",
     method: "POST",
   });
-  console.log(response);
 
   if (!response.ok) {
     throw new Error("Error during log out");

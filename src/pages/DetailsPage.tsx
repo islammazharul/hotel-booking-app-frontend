@@ -52,7 +52,7 @@ const DetailsPage = () => {
             {hotel.facilities.map((facility, index) => (
               <div
                 key={index}
-                className="border border-slate-300 rounded-sm p-3"
+                className="bg-gray-200 px-3 py-1 rounded-full text-lg font-medium text-gray-800 text-center"
               >
                 {facility}
               </div>

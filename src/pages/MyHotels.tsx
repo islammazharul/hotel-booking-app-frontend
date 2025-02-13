@@ -23,23 +23,23 @@ const MyHotels = () => {
   }
   return (
     <div className="space-y-5">
-      <span className="flex justify-between">
-        <h1 className="text-3xl font-bold">My Hotels</h1>
+      <span className="flex justify-between px-2">
+        <h1 className="md:text-3xl font-bold">My Hotels</h1>
         <Link
           to="/create-hotel"
-          className="flex bg-orange-500 text-white text-lg p-2 font-bold rounded-md hover:bg-orange-300"
+          className="flex bg-orange-500 text-white md:text-lg p-2 font-semibold rounded-md hover:bg-orange-300"
         >
           Add Hotel
         </Link>
       </span>
       <hr />
-      <div className="grid grid-cols-1 gap-8">
+      <div className="grid grid-cols-1 gap-8 px-2">
         {hotelData.map((hotel) => (
           <div
             key={hotel._id}
             className="relative flex w-full md:flex-row flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
           >
-            <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
+            <div className="relative m-0 md:w-2/5 shrink-0 overflow-hidden rounded-xl md:rounded-r-none bg-white bg-clip-border text-gray-700">
               <img
                 src={hotel.imageUrls[0]}
                 alt="image"
@@ -62,7 +62,7 @@ const MyHotels = () => {
                 </button>
               </p>
 
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white bg-orange-300 px-2 flex items-center">
                   <span className="rounded-full bg-white text-orange-300 w-6 h-6 flex items-center justify-center mr-1">
                     <BsMap />
@@ -115,7 +115,7 @@ const MyHotels = () => {
                   className="flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                   type="button"
                 >
-                  View Details
+                  Edit hotel
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

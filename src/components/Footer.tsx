@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-blue-800">
+    <footer className="container mx-auto w-full bg-blue-800">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16 flex justify-between items-center flex-col gap-8 lg:flex-row">
           <span className="text-3xl text-white font-bold">
@@ -110,7 +110,7 @@ const Footer = () => {
         <div className="py-7 border-t border-gray-300">
           <div className="flex items-center justify-center">
             <span className="text-gray-200 ">
-              ©<Link to="/">HOTel</Link>2024, All rights reserved.
+              ©<Link to="/">HOTel</Link>2025, All rights reserved.
             </span>
           </div>
         </div>

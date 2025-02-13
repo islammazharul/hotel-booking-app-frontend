@@ -4,10 +4,10 @@ import HeroImg from "../assets/pexels-lorenzo-castellino-61076802-15389334.jpg";
 
 const Hero = () => {
   return (
-    <div className="max-w-[1640px] mx-auto -mt-28 border-b-8 border-b-orange-500">
+    <div className="max-w-[1640px] mx-auto -mt-28">
       <div className="max-h-[800px] relative">
         {/* Overlay */}
-        <div className="absolute w-full h-full text-gray-200 bg-black/40 flex flex-col justify-center">
+        <div className="absolute w-full h-full text-gray-200 bg-black/50 flex flex-col justify-center">
           <div className="p-5 m-5 space-y-5">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
               Enjoy Your
@@ -15,7 +15,7 @@ const Hero = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
               <span className="text-orange-500">De</span>stination
             </h1>
-            <span className="w-24 h-2 bg-orange-500 mb-12"></span>
+            <div className="w-24 h-2 bg-orange-500 md:mb-12"></div>
             <p className="text-sm text-gray-200">
               Dimension of reality that makes change possible and
               <br />
