@@ -42,6 +42,7 @@ const Register = () => {
         description: "Registration Success!",
       });
       await queryClient.invalidateQueries("");
+      await queryClient.refetchQueries();
       navigate("/");
     },
     onError: (error: Error) => {

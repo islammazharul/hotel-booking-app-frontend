@@ -18,9 +18,9 @@ const ContactUs = () => {
           </p>
         </div>
       </div>
-      <div className="-mt-16 mb-8 px-2 md:px-8">
+      <div className=" -mt-8 md:-mt-16 mb-8 px-2 md:px-8">
         <div className="container mx-auto">
-          <div className="md:py-12 md:flex justify-center rounded-xl border border-white bg-gray-50 shadow-md shadow-black/5 saturate-200">
+          <div className="md:py-12 md:flex md:flex-row-reverse justify-center rounded-xl border border-white bg-gray-50 shadow-md shadow-black/5 saturate-200 md:gap-24">
             <div className="my-8 grid gap-6 px-4">
               <div className="flex items-center gap-4">
                 <svg

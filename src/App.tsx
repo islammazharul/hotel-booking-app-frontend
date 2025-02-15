@@ -9,6 +9,8 @@ import EditHotel from "./pages/EditHotel";
 import DetailsPage from "./pages/DetailsPage";
 import BookingPage from "./pages/BookingPage";
 import MyBookings from "./pages/MyBookings";
+import NotFound from "./pages/NotFound";
+import SearchHotel from "./pages/SearchHotel";
 
 const App = () => {
   return (
@@ -19,6 +21,14 @@ const App = () => {
           element={
             <Layout>
               <HomePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <Layout>
+              <SearchHotel />
             </Layout>
           }
         />
@@ -86,6 +96,7 @@ const App = () => {
             </Layout>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

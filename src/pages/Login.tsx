@@ -38,6 +38,7 @@ const Login = () => {
       toast({ description: "Login Successful!" });
       await queryClient.invalidateQueries("refreshToken");
       navigate(location.state?.from?.pathname || "/");
+      await queryClient.refetchQueries();
     },
     onError: (error: Error) => {
       toast({ description: error.message });

@@ -9,6 +9,7 @@ const LogOutButton = () => {
     onSuccess: async () => {
       await queryClient.invalidateQueries("refreshToken");
       toast({ description: "Signed Out!" });
+      await queryClient.refetchQueries();
     },
     onError: (error: Error) => {
       toast({ description: error.message });
@@ -22,7 +23,7 @@ const LogOutButton = () => {
   return (
     <Button
       onClick={handleClick}
-      className="text-blue-600 px-3 font-bold bg-white hover:bg-gray-100 "
+      className="uppercase text-xs font-semibold p-2 md:p-3 rounded-lg bg-orange-500 text-white "
     >
       Log Out
     </Button>

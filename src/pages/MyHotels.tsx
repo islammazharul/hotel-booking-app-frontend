@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import * as apiClient from "../api/hotelApi";
 import { Link } from "react-router-dom";
-import { BsBuilding, BsMap } from "react-icons/bs";
+import { BsBuilding } from "react-icons/bs";
 import { BiHotel, BiStar } from "react-icons/bi";
 import { useState } from "react";
 
@@ -56,27 +56,40 @@ const MyHotels = () => {
                   : hotel.description.slice(0, 100) + "....."}
                 <button
                   onClick={() => toggleCardDetails(hotel._id)}
-                  className="text-orange-500"
+                  className="text-orange-400 font-bold"
                 >
                   {expandedCard === hotel._id ? "See less" : "See more"}
                 </button>
               </p>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white bg-orange-300 px-2 flex items-center">
+                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white font-mono bg-blue-400 px-2 flex items-center">
                   <span className="rounded-full bg-white text-orange-300 w-6 h-6 flex items-center justify-center mr-1">
-                    <BsMap />
+                    {/* <BsMap /> */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      className="h-6 w-6 text-orange-400"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
                   </span>
                   {hotel.city}, {hotel.country}
                 </div>
-                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white bg-orange-300 p-2 flex items-center">
-                  <span className="rounded-full bg-white text-orange-300 w-6 h-6 flex items-center justify-center mr-1">
+                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white font-mono bg-blue-400 p-2 flex items-center">
+                  <span className="rounded-full bg-white text-orange-400 w-6 h-6 flex items-center justify-center mr-1">
                     <BsBuilding />
                   </span>
                   {hotel.type}
                 </div>
-                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white bg-orange-300 p-2 flex items-center gap-1">
-                  <span className="rounded-full bg-white text-orange-300 w-6 h-6 flex items-center justify-center mr-1">
+                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white font-mono bg-blue-400 p-2 flex items-center gap-1">
+                  <span className="rounded-full bg-white text-orange-400 w-6 h-6 flex items-center justify-center mr-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -94,16 +107,16 @@ const MyHotels = () => {
                   </span>
                   <span>${hotel.pricePerNight} per night</span>
                 </div>
-                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white bg-orange-300 p-2 flex items-center gap-1">
-                  <span className="rounded-full bg-white text-orange-300 w-6 h-6 flex items-center justify-center mr-1">
+                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white font-mono bg-blue-400 p-2 flex items-center gap-1">
+                  <span className="rounded-full bg-white text-orange-400 w-6 h-6 flex items-center justify-center mr-1">
                     <BiHotel />
                   </span>
                   <span>
                     {hotel.adultCount} adults, {hotel.childCount} children
                   </span>
                 </div>
-                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white bg-orange-300 p-2 flex items-center">
-                  <span className="rounded-full bg-white text-orange-300 w-6 h-6 flex items-center justify-center mr-1">
+                <div className="rounded-t-3xl rounded-bl-3xl text-sm text-white font-mono bg-blue-400 p-2 flex items-center">
+                  <span className="rounded-full bg-white text-orange-400 w-6 h-6 flex items-center justify-center mr-1">
                     <BiStar />
                   </span>
                   {hotel.starRating} Star Rating
