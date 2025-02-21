@@ -14,7 +14,7 @@ export type HotelFormData = {
   description: string;
   type: string;
   pricePerNight: number;
-  starRating: number;
+  // starRating: number;
   facilities: string[];
   imageFiles: FileList;
   imageUrls: string[];
@@ -39,7 +39,7 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
   const onSubmit: SubmitHandler<HotelFormData> = (
     formDataJson: HotelFormData
   ) => {
-    console.log("data2", formDataJson);
+    // console.log("data2", formDataJson);
     const formData = new FormData();
     if (hotel) {
       formData.append("hotelId", hotel._id);
@@ -50,7 +50,7 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
     formData.append("description", formDataJson.description);
     formData.append("type", formDataJson.type);
     formData.append("pricePerNight", formDataJson.pricePerNight.toString());
-    formData.append("starRating", formDataJson.starRating.toString());
+    // formData.append("starRating", formDataJson.starRating.toString());
     formData.append("adultCount", formDataJson.adultCount.toString());
     formData.append("childCount", formDataJson.childCount.toString());
 

@@ -23,7 +23,7 @@ const ImageSection = () => {
   };
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-3">Images</h2>
+      <h2 className="text-2xl font-bold mb-3">Photos</h2>
       <div className="border rounded flex flex-col gap-4 bg-gray-50 p-2 md:p-5 shadow-md">
         {existingImageUrls && (
           <div className="grid grid-cols-4 gap-4">
@@ -40,6 +40,7 @@ const ImageSection = () => {
             ))}
           </div>
         )}
+
         <input
           type="file"
           multiple

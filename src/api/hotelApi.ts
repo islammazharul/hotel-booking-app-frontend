@@ -1,10 +1,12 @@
 import { BookingFormData } from "@/forms/BookingForm/BookingForm";
+import { ITicket } from "@/types/ticketType";
 import {
   HotelSearchResponse,
   HotelType,
   PaymentIntentResponse,
 } from "@/types/hotelTypes";
 import { UserType } from "@/types/userTypes";
+import { FeedbackData } from "@/components/FeedbackComp";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
@@ -132,6 +134,24 @@ export const createRoomBooking = async (formData: BookingFormData) => {
   }
 };
 
+export const createReview = async (reviewData: FeedbackData) => {
+  const response = await fetch(
+    `${API_BASE_URL}/api/hotels/${reviewData.hotelId}/reviews`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(reviewData),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Error booking room");
+  }
+};
+
 export const fetchMyBookings = async (): Promise<HotelType[]> => {
   const response = await fetch(`${API_BASE_URL}/api/my-bookings`, {
     credentials: "include",
@@ -187,5 +207,33 @@ export const searchHotels = async (
     throw new Error("Error fetching hotels");
   }
 
+  return response.json();
+};
+
+export const supportTicket = async (contactFormData: ITicket) => {
+  const response = await fetch(`${API_BASE_URL}/api/ticket/create`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(contactFormData),
+  });
+
+  if (!response.ok) {
+    throw new Error("An error occurred, please try again later");
+  }
+  return response.json();
+};
+
+export const fetchSupportTickets = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/ticket`, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("An error occurred, please try again later");
+  }
   return response.json();
 };

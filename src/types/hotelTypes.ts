@@ -10,10 +10,11 @@ export type HotelType = {
   childCount: number;
   facilities: string[];
   pricePerNight: number;
-  starRating: number;
+  // starRating: number;
   imageUrls: string[];
   lastUpdated: Date;
   bookings: BookingType[];
+  reviews: ReviewType[];
 };
 
 export type BookingType = {
@@ -27,6 +28,13 @@ export type BookingType = {
   checkIn: Date;
   checkOut: Date;
   totalCost: number;
+};
+
+export type ReviewType = {
+  _id: string;
+  userId: string;
+  rating: number;
+  message?: string;
 };
 
 export type HotelSearchResponse = {

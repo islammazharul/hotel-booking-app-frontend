@@ -1,43 +1,52 @@
 import { Link } from "react-router-dom";
+import { SiSlint } from "react-icons/si";
 
 const Footer = () => {
   return (
     <footer className="container mx-auto w-full bg-black bg-opacity-90">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16 flex justify-between items-center flex-col gap-8 lg:flex-row">
-          <span className="text-3xl text-orange-500 font-bold">
-            <Link to="/">HOTel</Link>
-          </span>
+          <div className="text-3xl text-orange-500 font-bold">
+            <Link to="/">
+              <h2 className="flex justify-center items-center text-xl font-bold text-orange-500">
+                <span className="inline-flex items-center">
+                  Hotel
+                  <SiSlint />
+                  tun
+                </span>
+              </h2>
+            </Link>
+          </div>
           <ul className="text-lg text-center sm:flex items-center justify-center gap-14 lg:gap-10 xl:gap-14 transition-all duration-500">
             <li>
-              <a href="" className="text-white hover:text-orange-400">
-                HOTel
+              <a href="/" className="text-white hover:text-orange-400">
+                HotelStun
               </a>
             </li>
             <li className="sm:my-0 my-2">
-              <a href="" className="text-white hover:text-orange-400">
+              <a href="/" className="text-white hover:text-orange-400">
                 Products
               </a>
             </li>
             <li>
-              <a href="" className="text-white hover:text-orange-400">
+              <a href="/" className="text-white hover:text-orange-400">
                 Resources
               </a>
             </li>
             <li className="sm:my-0 my-2">
-              <a href="" className="text-white hover:text-orange-400">
+              <a href="/" className="text-white hover:text-orange-400">
                 Blog
               </a>
             </li>
             <li>
-              <a href="" className="text-white hover:text-orange-400">
+              <a href="/" className="text-white hover:text-orange-400">
                 Support
               </a>
             </li>
           </ul>
           <div className="flex  space-x-4 sm:justify-center  ">
             <a
-              href=""
+              href="/"
               className="w-9 h-9 rounded-full flex justify-center items-center hover:bg-indigo-600"
             >
               <svg

@@ -11,6 +11,7 @@ import BookingPage from "./pages/BookingPage";
 import MyBookings from "./pages/MyBookings";
 import NotFound from "./pages/NotFound";
 import SearchHotel from "./pages/SearchHotel";
+import AdminPage from "./adminPage/AdminPage";
 
 const App = () => {
   return (
@@ -93,6 +94,14 @@ const App = () => {
           element={
             <Layout>
               <MyBookings />
+            </Layout>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <Layout>
+              <AdminPage />
             </Layout>
           }
         />

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LogOutButton from "./LogOutButton";
 import { RxCross2 } from "react-icons/rx";
 import { FaBars } from "react-icons/fa";
+import { SiSlint } from "react-icons/si";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -16,8 +17,12 @@ const Navbar = () => {
         {/* <div> */}
         <div className="flex items-center justify-between md:py-5 md:block">
           <Link to="/">
-            <h2 className="flex justify-center items-center text-xl font-bold text-orange-500">
-              <span>HOTel</span>
+            <h2 className="flex justify-center items-center md:text-xl font-bold text-orange-500">
+              <span className="inline-flex items-center">
+                Hotel
+                <SiSlint />
+                tun
+              </span>
             </h2>
           </Link>
           <div className="md:hidden">
@@ -51,6 +56,12 @@ const Navbar = () => {
                     to="/my-hotels"
                   >
                     My Hotels
+                  </Link>
+                  <Link
+                    className="flex items-center text-sm text-orange-400 md:px-3 font-bold transition-all hover:text-orange-600 active:bg-orange-500/10 rounded-md mb-2"
+                    to="/admin"
+                  >
+                    Admin
                   </Link>
 
                   <LogOutButton />

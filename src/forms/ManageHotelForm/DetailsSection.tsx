@@ -71,7 +71,7 @@ const DetailsSection = () => {
             <span className="text-red-500">{errors.pricePerNight.message}</span>
           )}
         </label>
-        <label className="text-gray-700 text-sm font-bold w-full">
+        {/* <label className="text-gray-700 text-sm font-bold w-full">
           Star Rating
           <select
             {...register("starRating", {
@@ -89,7 +89,7 @@ const DetailsSection = () => {
           {errors.starRating && (
             <span className="text-red-500">{errors.starRating.message}</span>
           )}
-        </label>
+        </label> */}
       </div>
     </div>
   );

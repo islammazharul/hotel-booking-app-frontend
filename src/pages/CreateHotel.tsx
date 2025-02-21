@@ -5,13 +5,12 @@ import { useToast } from "@/hooks/use-toast";
 
 const CreateHotel = () => {
   const { toast } = useToast();
-  const { mutate, isLoading } = useMutation(apiClient.createHotel, {
-    onSuccess: async (data) => {
-      console.log(data);
+  const { mutate, isLoading, reset } = useMutation(apiClient.createHotel, {
+    onSuccess: async () => {
       toast({ description: "Hotel Saved!" });
+      reset();
     },
-    onError: async (error) => {
-      console.log(error);
+    onError: async () => {
       toast({ description: "Failed to save hotel!" });
     },
   });

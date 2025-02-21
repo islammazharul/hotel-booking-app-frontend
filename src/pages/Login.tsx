@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -56,9 +55,6 @@ const Login = () => {
             <Card>
               <CardHeader>
                 <CardTitle>Login</CardTitle>
-                <CardDescription>
-                  Change your password here. After saving, you'll be logged out.
-                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
                 <div className="space-y-1">
@@ -91,9 +87,12 @@ const Login = () => {
                     </span>
                   )}
                 </div>
-                <p className="text-end">
-                  Don't have register?
-                  <Link to="/register" className="text-blue-500">
+                <p className="text-end text-xs md:text-sm">
+                  Don't have register?{" "}
+                  <Link
+                    to="/register"
+                    className="text-blue-500 hover:text-blue-600"
+                  >
                     Register here
                   </Link>
                 </p>

@@ -1,4 +1,47 @@
+import { useMutation } from "react-query";
+import * as apiClient from "@/api/hotelApi";
+import { toast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
 const ContactUs = () => {
+  // Define validation schema using Zod
+  const ticketSchema = z.object({
+    _id: z.string(),
+    name: z.string().min(3, "Name must be at least 3 characters"),
+    email: z.string().email("Invalid email format"),
+    phone: z.string().min(11, "Invalid email format"),
+    message: z.string().min(10, "Message must be at least 10 characters"),
+  });
+
+  type TicketFormData = z.infer<typeof ticketSchema>;
+
+  const formMethods = useForm<TicketFormData>({
+    resolver: zodResolver(ticketSchema),
+  });
+  const {
+    handleSubmit,
+    reset,
+    register,
+
+    formState: { errors },
+  } = formMethods;
+
+  const mutation = useMutation("ticket", apiClient.supportTicket, {
+    onSuccess: async () => {
+      toast({ description: "Support ticket submitted successfully!" });
+      reset();
+    },
+    onError: async () => {
+      toast({ description: "Failed to sent message!" });
+    },
+  });
+
+  const onSubmit = (data: TicketFormData) => {
+    mutation.mutate(data);
+  };
+
   return (
     <div>
       <div className="relative w-full h-80">
@@ -93,15 +136,21 @@ const ContactUs = () => {
               </div>
             </div>
             <div className="py-4">
-              <form action="#">
+              <form action="#" onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                   <div className="relative w-full min-w-[200px] h-11 ">
                     <input
                       type="text"
-                      name="Name"
                       className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-3 rounded-md border-blue-gray-200 focus:border-gray-900"
-                      placeholder=" "
+                      {...register("name", {
+                        required: "This field is required",
+                      })}
                     />
+                    {errors.name && (
+                      <span className="text-red-500">
+                        {errors.name.message}
+                      </span>
+                    )}
                     <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[&#x27; &#x27;] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[&#x27; &#x27;] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[4.1] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
                       Enter your name{" "}
                     </label>
@@ -111,10 +160,16 @@ const ContactUs = () => {
                   <div className="relative w-full min-w-[200px] h-11 ">
                     <input
                       type="email"
-                      name="Email"
                       className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-3 rounded-md border-blue-gray-200 focus:border-gray-900"
-                      placeholder=" "
+                      {...register("email", {
+                        required: "This field is required",
+                      })}
                     />
+                    {errors.email && (
+                      <span className="text-red-500">
+                        {errors.email.message}
+                      </span>
+                    )}
                     <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[&#x27; &#x27;] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[&#x27; &#x27;] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[4.1] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
                       Enter your email{" "}
                     </label>
@@ -124,10 +179,16 @@ const ContactUs = () => {
                   <div className="relative w-full min-w-[200px] h-11 ">
                     <input
                       type="tel"
-                      name="Phone Number"
                       className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-3 rounded-md border-blue-gray-200 focus:border-gray-900"
-                      placeholder=" "
+                      {...register("phone", {
+                        required: "This field is required",
+                      })}
                     />
+                    {errors.phone && (
+                      <span className="text-red-500">
+                        {errors.phone.message}
+                      </span>
+                    )}
                     <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[&#x27; &#x27;] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[&#x27; &#x27;] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[4.1] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
                       Enter your phone number{" "}
                     </label>
@@ -137,16 +198,22 @@ const ContactUs = () => {
                   <div className="relative w-full min-w-[200px] h-11">
                     <input
                       type="textarea"
-                      name="Message"
                       className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-3 rounded-md border-blue-gray-200 focus:border-gray-900"
-                      placeholder=" "
+                      {...register("message", {
+                        required: "This field is required",
+                      })}
                     />
+                    {errors.message && (
+                      <span className="text-red-500">
+                        {errors.message.message}
+                      </span>
+                    )}
                     <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[&#x27; &#x27;] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[&#x27; &#x27;] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[4.1] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
                       Enter your message{" "}
                     </label>
                   </div>
                 </div>
-                <div className="inline-flex items-center">
+                {/* <div className="inline-flex items-center">
                   <label className="relative flex items-center cursor-pointer p-3 rounded-full -ml-2.5">
                     <input
                       type="checkbox"
@@ -182,12 +249,13 @@ const ContactUs = () => {
                       .
                     </p>
                   </label>
-                </div>
+                </div> */}
                 <button
                   className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block md:w-full mt-6"
-                  type="button"
+                  type="submit"
+                  disabled={mutation.isLoading}
                 >
-                  Contact Us
+                  {mutation.isLoading ? "Submitting..." : "Submit Ticket"}
                 </button>
               </form>
             </div>
