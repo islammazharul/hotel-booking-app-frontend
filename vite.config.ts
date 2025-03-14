@@ -11,4 +11,14 @@ export default defineConfig({
   //     "@": path.resolve(__dirname, "./src"),
   //   },
   // },
+
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://hotel-booking-app-backend-delta.vercel.app",
+        changeOrigin: true,
+        secure: false, // If your backend uses HTTPS with a self-signed certificate
+      },
+    },
+  },
 });
