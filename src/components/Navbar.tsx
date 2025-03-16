@@ -21,7 +21,7 @@ const Navbar = () => {
               <span className="inline-flex items-center">
                 Hotel
                 <SiSlint />
-                tun2
+                tun22222
               </span>
             </h2>
           </Link>
