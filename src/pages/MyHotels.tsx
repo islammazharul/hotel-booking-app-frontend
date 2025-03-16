@@ -119,7 +119,7 @@ const MyHotels = () => {
                   <span className="rounded-full bg-white text-orange-400 w-6 h-6 flex items-center justify-center mr-1">
                     <BiStar />
                   </span>
-                  {hotel.starRating} Star Rating
+                  Star Rating
                 </div>
               </div>
               <a className="inline-block mt-4">

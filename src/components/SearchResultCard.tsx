@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { AiFillStar } from "react-icons/ai";
+// import { AiFillStar } from "react-icons/ai";
 import { HotelType } from "@/types/hotelTypes";
 type Props = {
   hotel: HotelType;
@@ -17,11 +17,11 @@ const SearchResultsCard = ({ hotel }: Props) => {
       <div className="grid grid-rows-[1fr_2fr_1fr]">
         <div>
           <div className="flex items-center">
-            <span className="flex">
+            {/* <span className="flex">
               {Array.from({ length: hotel.starRating }).map(() => (
                 <AiFillStar className="fill-yellow-400" />
               ))}
-            </span>
+            </span> */}
             <span className="ml-1 text-sm">{hotel.type}</span>
           </div>
           <Link

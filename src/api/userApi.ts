@@ -32,7 +32,7 @@ export const Login = async (formData: LoginFormData) => {
   });
 
   const result = await response.json();
-  // console.log(result);
+  console.log(result);
   if (!response.ok) {
     throw new Error(result.message);
   }
@@ -44,7 +44,7 @@ export const validateToken = async () => {
     method: "GET",
     credentials: "include",
   });
-
+  console.log(response);
   if (!response.ok) {
     throw new Error("Token invalid");
   }
