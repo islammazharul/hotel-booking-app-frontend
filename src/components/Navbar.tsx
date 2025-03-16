@@ -9,7 +9,7 @@ import { useState } from "react";
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { isLoggedIn } = useAppContext();
-  // console.log(isLoggedIn);
+  console.log(isLoggedIn);
 
   return (
     <div className="container mx-auto bg-transparent z-10">
@@ -21,7 +21,7 @@ const Navbar = () => {
               <span className="inline-flex items-center">
                 Hotel
                 <SiSlint />
-                tun
+                tun2
               </span>
             </h2>
           </Link>

@@ -4,20 +4,24 @@ import { RegisterFormData } from "@/pages/Register";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const createUser = async (formData: RegisterFormData) => {
-  const response = await fetch(`${API_BASE_URL}/api/users/register`, {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  });
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/users/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-  const result = await response.json();
-  // console.log("register", result);
-
-  if (!response.ok) {
-    throw new Error(result.message);
+    const data = await response.json();
+    if (response.ok) {
+      localStorage.setItem("token", data.token);
+      console.log("Login successful:", data);
+    } else {
+      console.error("Login failed:", data.message);
+    }
+  } catch (error) {
+    console.error("Error during login:", error);
   }
 };
 
@@ -102,13 +106,22 @@ export const validateToken = async () => {
 //   return response.json();
 // };
 
-export const LogOut = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
-    credentials: "include",
-    method: "POST",
-  });
+export const LogOut = async (): Promise<void> => {
+  // Remove the token from localStorage
+  localStorage.removeItem("token");
 
-  if (!response.ok) {
-    throw new Error("Error during log out");
+  // Call the backend logout endpoint (optional)
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+      method: "POST",
+    });
+
+    if (!response.ok) {
+      throw new Error("Error during log out");
+    }
+
+    console.log("Logged out successfully");
+  } catch (error) {
+    console.error("Logout failed:", error);
   }
 };

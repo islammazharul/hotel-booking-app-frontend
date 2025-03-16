@@ -35,7 +35,7 @@ const Login = () => {
   const mutation = useMutation(apiClient.Login, {
     onSuccess: async () => {
       toast({ description: "Login Successful!" });
-      // await queryClient.invalidateQueries("validateToken");
+      await queryClient.invalidateQueries("validateToken");
       navigate(location.state?.from?.pathname || "/");
       await queryClient.refetchQueries();
     },
