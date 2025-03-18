@@ -5,8 +5,8 @@ import {
   HotelType,
   PaymentIntentResponse,
 } from "@/types/hotelTypes";
-import { UserType } from "@/types/userTypes";
 import { FeedbackData } from "@/components/FeedbackComp";
+import { UserType } from "@/types/userTypes";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
@@ -44,7 +44,9 @@ export const fetchHotels = async (): Promise<HotelType[]> => {
 };
 
 export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
-  const response = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`);
+  const response = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`, {
+    credentials: "include",
+  });
   if (!response.ok) {
     throw new Error("Error fetching Hotels");
   }

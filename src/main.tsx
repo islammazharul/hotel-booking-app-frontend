@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { AppContextProvider } from "./contexts/AppContext.tsx";
 import { SearchContextProvider } from "./contexts/SearchContext.tsx";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,12 +19,14 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <AppContextProvider>
-        <SearchContextProvider>
-          <App />
-          <Toaster />
-        </SearchContextProvider>
-      </AppContextProvider>
+      <AuthProvider>
+        <AppContextProvider>
+          <SearchContextProvider>
+            <App />
+            <Toaster />
+          </SearchContextProvider>
+        </AppContextProvider>
+      </AuthProvider>
     </QueryClientProvider>
   </StrictMode>
 );

@@ -40,8 +40,8 @@ const Register = () => {
       toast({
         description: "Registration Success!",
       });
-      await queryClient.invalidateQueries("");
-      await queryClient.refetchQueries();
+      await queryClient.invalidateQueries(["validateToken"]);
+      // await queryClient.refetchQueries();
       navigate("/");
     },
     onError: (error: Error) => {

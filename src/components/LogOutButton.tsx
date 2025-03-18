@@ -7,9 +7,9 @@ const LogOutButton = () => {
 
   const mutation = useMutation(apiClient.LogOut, {
     onSuccess: async () => {
-      await queryClient.invalidateQueries("token");
-      toast({ description: "Signed Out!" });
-      await queryClient.refetchQueries();
+      toast({ description: "Log Out!" });
+      await queryClient.invalidateQueries(["validateToken"]);
+      // await queryClient.refetchQueries();
     },
     onError: (error: Error) => {
       toast({ description: error.message });

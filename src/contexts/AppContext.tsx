@@ -19,8 +19,9 @@ export const AppContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { isError } = useQuery("validate-token", apiClient.validateToken, {
-    retry: false,
+  const { isError } = useQuery(["validateToken"], apiClient.validateToken, {
+    retry: false, // Prevents retrying if token is invalid
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
   });
   return (
     <AppContext.Provider value={{ isLoggedIn: !isError, stripePromise }}>
